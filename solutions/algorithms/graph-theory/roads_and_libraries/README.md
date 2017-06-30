@@ -36,8 +36,8 @@ Problem description:
       cities and build one library at random city.
 
 ## Fourth Approach
-1. If c_lib < c_road:
+1. If c_lib <= c_road:
    1. Build library in each city.
-1. Else c_lib >= c_road:
+1. Else c_lib > c_road:
    1. Divide query into isolated components by comparing input edges.
    1. cost = (n - 1) * c_road + c_lib
