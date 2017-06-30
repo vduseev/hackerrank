@@ -1,3 +1,16 @@
+'''
+Problem: https://www.hackerrank.com/challenges/matrix-rotation-algo
+Python Version: 3
+
+Thoughts:
+We imagine that every layer of the Matrix is a snake that we need to unroll and then roll up back to the matrix.
+Step 1: Unroll each snake into one-dimensional array.
+Step 2: Shift cells in the array.
+Step 3: Put rotated snake back into the Matrix.
+
+Time Complexity:  TBD
+Space Complexity: TBD
+'''
 
 
 class SnakePit:

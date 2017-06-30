@@ -1,6 +1,3 @@
-from algorithms.implementation.matrix_layer_rotation.matrix_layer_rotation import SnakePit
-
-
 snake_pit_00 = SnakePit(4, 4, [
     [1, 2, 3, 4],
     [5, 6, 7, 8],
