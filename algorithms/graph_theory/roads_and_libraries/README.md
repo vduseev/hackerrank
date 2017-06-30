@@ -34,3 +34,10 @@ Problem description:
       2. Take into account the cost of the roads to these lonely cities.
    2. Find minimal amount of roads required to connect all remaining
       cities and build one library at random city.
+
+## Fourth Approach
+1. Divide query into isolated components by comparing input edges.
+2. If c_lib < c_road:
+   1. Build library in each city in this component.
+3. Else c_lib >= c_road:
+   1. cost = (n - 1) * c_road + c_lib
