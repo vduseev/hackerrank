@@ -1,5 +1,7 @@
 import unittest
+import sys
 import os
+import re
 from solutions.test_runner import execute_test
 
 
@@ -32,8 +34,12 @@ class TestCase(unittest.TestCase):
         self.testCaseDir = os.path.join(self.problemDir, 'tests')
         self.answerFilePath = os.path.join(os.getcwd(), 'answer.py')
 
-    def run_test(self, input_file_path, output_file_path):
-        input_path = os.path.join(self.testCaseDir, input_file_path)
-        output_path = os.path.join(self.testCaseDir, output_file_path)
+    def execute_test_case(self):
+        caller_name = sys._getframe().f_back.f_code.co_name
+        digits_pattern = re.compile(r'\d+')
+        digits = digits_pattern.search(caller_name).group()
+        test_case_name = 'tc_' + digits
+        input_path = os.path.join(self.testCaseDir, test_case_name + '.in')
+        output_path = os.path.join(self.testCaseDir, test_case_name + '.out')
         script_output, ref_output = execute_test(self.answerFilePath, input_path, output_path)
         self.assertEqual(script_output, ref_output)
