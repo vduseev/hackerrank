@@ -25,7 +25,7 @@ class TestEqual(unittest.TestCase):
         self.assertEqual(script_output, ref_output)
 
     def test_case_15(self):
-        input_path = os.path.join(self.testCaseDir, 'tc_1.in')
-        output_path = os.path.join(self.testCaseDir, 'tc_1.out')
+        input_path = os.path.join(self.testCaseDir, 'tc_15.in')
+        output_path = os.path.join(self.testCaseDir, 'tc_15.out')
         script_output, ref_output = execute_test(self.answerFilePath, input_path, output_path)
         self.assertEqual(script_output, ref_output)
