@@ -20,8 +20,8 @@ class TestCase(unittest.TestCase):
             - solution_...
           - language ...
           - tests
-            - tc_0.in
-            - tc_0.out
+            - tc_run_code.in
+            - tc_run_code.out
             - ...
       - test_case.py
       - test_runner.py
@@ -36,8 +36,8 @@ class TestCase(unittest.TestCase):
 
     def execute_test_case(self):
         caller_name = sys._getframe().f_back.f_code.co_name
-        digits_pattern = re.compile(r'\d+')
-        digits = digits_pattern.search(caller_name).group()
+        digits_pattern = re.compile(r'(test_case_)(.+)')
+        digits = digits_pattern.search(caller_name).group(2)
         test_case_name = 'tc_' + digits
         input_path = os.path.join(self.testCaseDir, test_case_name + '.in')
         output_path = os.path.join(self.testCaseDir, test_case_name + '.out')
