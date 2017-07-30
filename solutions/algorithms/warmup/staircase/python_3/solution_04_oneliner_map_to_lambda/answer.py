@@ -1,1 +1,0 @@
-[list(map(lambda i:print(('#'*i).rjust(n)), range(1,n+1))) for n in (int(input()),)]

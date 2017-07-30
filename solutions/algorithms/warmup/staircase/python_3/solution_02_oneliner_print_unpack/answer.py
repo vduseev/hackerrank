@@ -1,1 +1,0 @@
-print(*[('#'*i).rjust(n) for n in (int(input()),) for i in range(1,n+1)],sep='\n')

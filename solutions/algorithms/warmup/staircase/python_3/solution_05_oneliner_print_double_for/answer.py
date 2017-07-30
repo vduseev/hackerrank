@@ -1,1 +1,0 @@
-[print(('#'*(i+1)).rjust(n)) for n in (int(input()),) for i in range(n)]
