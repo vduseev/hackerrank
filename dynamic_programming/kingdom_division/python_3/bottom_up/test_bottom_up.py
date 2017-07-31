@@ -96,7 +96,7 @@ def test_answer():
         # compare with output for test case
         with open(output_file_path) as output_reference_file:
             output_reference = output_reference_file.read()
-            return subprocess_output.rstrip('\n'), output_reference.rstrip('\n')
+            return subprocess_output.rstrip('\n').rstrip('\r'), output_reference.rstrip('\n').rstrip('\r')
 
     langDir = os.path.dirname(os.getcwd())
     problemDir = os.path.dirname(langDir)

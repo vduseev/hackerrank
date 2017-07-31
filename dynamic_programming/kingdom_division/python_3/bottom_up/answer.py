@@ -109,7 +109,7 @@ def calculate_combinations(rooted_tree, visiting_order):
             blue_node_combinations = 1
             isolated_red_node_combinations = 1
             isolated_blue_node_combinations = 1
-            for child_id in rooted_tree[node_id]['CHILDREN']: 
+            for child_id in rooted_tree[node_id]['CHILDREN']:
                 # Assume current node is 'RED'
                 red_node_combinations *= (memory[child_id, 'RED', 'RED'] + memory[child_id, 'BLUE', 'RED'])
                 # Assume current node is 'BLUE'
