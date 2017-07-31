@@ -29,24 +29,25 @@ def bfs(graph, root, on_node_discovery=None, on_unvisited_children=None):
     # Traverse while we have nodes to visit in the queue
     while queue:
         node = queue.pop()
-        if node not in visited:  # can be removed?
-            # Call user supplied function
-            if on_node_discovery is not None:
-                on_node_discovery(node)
 
-            # Keep track of visited node
-            visited.add(node)
-            visit_order.append(node)
+        # Call user supplied function
+        if on_node_discovery is not None:
+            on_node_discovery(node)
 
-            # Which children of this node were not visited yet?
-            unvisited_children = graph[node] - visited
+        # Keep track of visited node
+        visited.add(node)
+        visit_order.append(node)
 
-            # Call user supplied function
-            if on_unvisited_children is not None:
-                on_unvisited_children(node, unvisited_children)
+        # Which children of this node were not visited yet?
+        unvisited_children = graph[node] - visited
 
-            # Add unvisited children to the queue
-            queue[0:0] = unvisited_children
+        # Call user supplied function
+        if on_unvisited_children is not None:
+            on_unvisited_children(node, unvisited_children)
+
+        # Add unvisited children to the queue
+        queue[0:0] = unvisited_children
+
     return visit_order
 
 
@@ -108,7 +109,7 @@ def calculate_combinations(rooted_tree, visiting_order):
             blue_node_combinations = 1
             isolated_red_node_combinations = 1
             isolated_blue_node_combinations = 1
-            for child_id in rooted_tree[node_id]['CHILDREN']:  # Might be considering unnecessary nodes here?
+            for child_id in rooted_tree[node_id]['CHILDREN']: 
                 # Assume current node is 'RED'
                 red_node_combinations *= (memory[child_id, 'RED', 'RED'] + memory[child_id, 'BLUE', 'RED'])
                 # Assume current node is 'BLUE'
