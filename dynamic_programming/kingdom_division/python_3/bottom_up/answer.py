@@ -85,6 +85,8 @@ def calculate_combinations(rooted_tree, visiting_order):
     # key = node_id, node_color, parent_color
     memory = {}
 
+    mod = 1000000007
+
     # Traverse starting from the leafs and up to the root of the rooted tree
     for node_id in visiting_order[::-1]:
 
@@ -111,19 +113,19 @@ def calculate_combinations(rooted_tree, visiting_order):
             isolated_blue_node_combinations = 1
             for child_id in rooted_tree[node_id]['CHILDREN']:
                 # Assume current node is 'RED'
-                red_node_combinations *= (memory[child_id, 'RED', 'RED'] + memory[child_id, 'BLUE', 'RED'])
+                red_node_combinations = (red_node_combinations * (memory[child_id, 'RED', 'RED'] + memory[child_id, 'BLUE', 'RED'])) % mod
                 # Assume current node is 'BLUE'
-                blue_node_combinations *= (memory[child_id, 'BLUE', 'BLUE'] + memory[child_id, 'RED', 'BLUE'])
+                blue_node_combinations = (blue_node_combinations * (memory[child_id, 'BLUE', 'BLUE'] + memory[child_id, 'RED', 'BLUE'])) % mod
                 # Count wrong combinations
-                isolated_red_node_combinations *= memory[child_id, 'BLUE', 'RED']  # current node - red, child - blue
-                isolated_blue_node_combinations *= memory[child_id, 'RED', 'BLUE']  # current node - blue, child - red
+                isolated_red_node_combinations = (isolated_red_node_combinations * memory[child_id, 'BLUE', 'RED']) % mod  # current node - red, child - blue
+                isolated_blue_node_combinations = (isolated_blue_node_combinations * memory[child_id, 'RED', 'BLUE']) % mod  # current node - blue, child - red
             # Write down total count for 2 cases:
             # - case 1: parent of current node is of same color
             memory[node_id, 'RED', 'RED'] = red_node_combinations
             memory[node_id, 'BLUE', 'BLUE'] = blue_node_combinations
             # - case 2: parent of current node is of opposite color
-            memory[node_id, 'RED', 'BLUE'] = red_node_combinations - isolated_red_node_combinations
-            memory[node_id, 'BLUE', 'RED'] = blue_node_combinations - isolated_blue_node_combinations
+            memory[node_id, 'RED', 'BLUE'] = (red_node_combinations - isolated_red_node_combinations + mod) % mod
+            memory[node_id, 'BLUE', 'RED'] = (blue_node_combinations - isolated_blue_node_combinations + mod) % mod
 
     return memory
 
